@@ -1,0 +1,50 @@
+body {
+    background-color: #d9d9d9;
+}
+.logo {
+    padding: 05px;
+    max-width:120px;
+    max-height:100px;
+    width: auto;
+    height: auto;
+}
+
+.navbar {
+    display: block !important;
+    background-color: #4d4dff;
+}
+
+.title-1 {
+    color: black;
+}
+
+.title {
+    height: 70px;
+    padding: 07px;
+    background-color: #d9d9d9;
+    color: #8080ff;
+    font-family: Sans-serif;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+.example-full-width {
+    width: 100%;
+}
+
+.alinharBtns {
+    margin-right: 10px;
+}
+
+.ajusteCheckBox {
+    margin-top: 32px;
+    width: 10px;
+}
+
+.setCorPesquisa {
+    background-color: white;
+}
