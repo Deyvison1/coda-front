@@ -4,5 +4,12 @@
 @import '../node_modules/bootswatch/dist/litera/bootstrap.min.css';
 @import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url(/src/assets/Roboto.zip) format("truetype");
+    font-weight:300;
+  }
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

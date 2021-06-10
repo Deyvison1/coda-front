@@ -13,8 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { CurrencyMaskModule } from "ng2-currency-mask";
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -23,7 +24,6 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
     InicioComponent
   ],
   imports: [
-    PaginationModule.forRoot(),
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -36,7 +36,9 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
     FormsModule,
     MatCheckboxModule,
     MatSlideToggleModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    MatPaginatorModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

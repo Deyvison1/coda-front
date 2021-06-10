@@ -10,7 +10,7 @@
               <img class="logo mt-2" src="../../assets/header-logo-psdb.png" />
             </div>
             <div class="col-4">
-              <p class="title-1 mt-1 h1 text-center">
+              <p class="tituloNav mt-1 h1 text-center">
                 Pedidos para aprovação
               </p>
             </div>
@@ -49,7 +49,7 @@
               <div class="col-4">
                 <div class="row">
                   <div class="mt-4 col-6">
-                    <mat-slide-toggle [(ngModel)]="aprovado" [checked]="aprovado" [ngModelOptions]="{ standalone: true }">Aprovado</mat-slide-toggle>
+                    <mat-slide-toggle color="blue" [(ngModel)]="aprovado" [checked]="aprovado" [ngModelOptions]="{ standalone: true }">Aprovado</mat-slide-toggle>
                   </div>
                   <div class="mt-4 col-6">
                     <mat-slide-toggle [(ngModel)]="eleicao" [checked]="eleicao" [ngModelOptions]="{ standalone: true }">Eleição</mat-slide-toggle>
@@ -69,11 +69,11 @@
             </div>
             <div class="row">
               <div class="btn-toolbar">
-                <button class="alinharBtns btn btn-success" (click)="search()">
+                <button class="alinharBotoes btn btn-success" (click)="listarTodosComOuSemFiltro()">
                   <i class="fas fa-search"></i>
                   Pesquisar
                 </button>
-                <button class="btn btn-warning" (click)="limpar()">
+                <button class="botao-limpar btn" (click)="limpar()">
                   <i class="fas fa-eraser"></i>
                   Limpar
                 </button>
@@ -96,15 +96,8 @@
             <div class="col-6"></div>
           </div>
 
-          <mat-card class="mt-3 border" *ngFor="let item of testeModels2">
+          <mat-card class="mt-3 border" *ngFor="let item of testeModels" (click)="adicionarNaLista(item)" [class.bg-warning]="temNaLista(item)">
             <div class="row">
-              <div class="col-1 ajusteCheckBox">
-                <input
-                  type="checkbox"
-                  (click)="addToList(item)"
-                  [checked]="item.marcado"
-                />
-              </div>
               <div class="col-5">
                 <p><strong>Nome Fantasia</strong> {{ item.nomeFantasia }}</p>
                 <p><strong>Total</strong> {{ item.total }}</p>
@@ -120,19 +113,11 @@
             </div>
             <button class="mt-2 btn btn-primary">Visualizar</button>
           </mat-card>
-          <div
-            class="
-              mt-3
-              d-flex
-              flex-row
-              justify-content-center
-              align-items-center
-            "
-          >
-            <pagination
-              [totalItems]="testeModels.length"
-              (pageChanged)="pageChanged($event)"
-            ></pagination>
+          <div>
+          <mat-paginator #paginacao [length]="totalItens"
+          [pageSizeOptions]="[5, 10, 20, 50]"
+          (page)="aoTrocarPagina($event)">>
+          </mat-paginator>
           </div>
         </mat-card>
       </div>

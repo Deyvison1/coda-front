@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { TesteModel } from '../models/teste.model';
 import { TesteModelService } from '../services/teste-model.service';
@@ -11,6 +13,10 @@ import { TesteModelService } from '../services/teste-model.service';
 })
 export class InicioComponent implements OnInit {
 
+  @ViewChild(MatPaginator, { static: true }) paginacao: MatPaginator;
+
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   // var search
   beneficiario: string = ''
   valorPedido: string = ''
@@ -20,46 +26,42 @@ export class InicioComponent implements OnInit {
   color: ThemePalette = 'accent';
 
   indeterminate = false;
-  currentPage: number = 1;
-
 
   testeModels: TesteModel[] = [];
-  testeModels2: TesteModel[] = [];
 
   listTesteModels: TesteModel[] = [];
   
+  totalItens: number;
+  pageEvent: PageEvent = new PageEvent();
+
   constructor(
-    private service: TesteModelService
+    private service: TesteModelService,
+    private _snackBar: MatSnackBar
   ) {
-    this.getAll();
+    this.pageEvent.pageIndex = 0;
+    this.pageEvent.pageSize = 5;
+    this.listarTodosComOuSemFiltro();
   }
 
   ngOnInit(): void {
-    this.testeModels2 = this.testeModels.slice(0, 10);
-    this.currentPage = 1;
+    this.paginacao._intl.itemsPerPageLabel = "Itens por página";
   }
 
   aprova() {
     this.service.aprova(this.listTesteModels).subscribe(
       (resp) => {
-
+        this._snackBar.open("Aprovado com sucesso!", "OK", {
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition
+        }); 
+        this.listarTodosComOuSemFiltro();
       }
     );
   }
 
-  search() {
-    this.service.search(this.beneficiario, this.valorPedido, this.aprovado).subscribe(
-      (resp) => {
-        this.testeModels2 = resp;
-        this.testeModels = resp;
-      }
-    );
-  }
-
-  pageChanged(event: PageChangedEvent): void {
-    const startItem = (event.page - 1) * event.itemsPerPage;
-    const endItem = event.page * event.itemsPerPage;
-    this.testeModels2 = this.testeModels.slice(startItem, endItem);
+  aoTrocarPagina(event) {
+    this.pageEvent = event;
+    this.listarTodosComOuSemFiltro();
   }
 
   limpar() {
@@ -69,15 +71,26 @@ export class InicioComponent implements OnInit {
     this.eleicao = false;
   }
 
-  getAll() {
-    this.service.getAll().subscribe(
+  listarTodosComOuSemFiltro() {
+    this.service.listarTodosComOuSemFiltro(this.beneficiario, this.valorPedido, this.pageEvent.pageIndex, this.pageEvent.pageSize).subscribe(
       (resp) => {
-        this.testeModels = resp;
+        this.testeModels = resp.body;
+        this.totalItens = +resp.headers.get("X_TOTAL_COUNT");
       }
     );
   }
+  
+  temNaLista(item) {
+    let index = this.listTesteModels.findIndex(x => x.id == item.id);
 
-  addToList(item: TesteModel) {
+    if(index == -1) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  adicionarNaLista(item: TesteModel) {
     let index = this.listTesteModels.findIndex(x => x.id == item.id);
 
     if(index == -1) {

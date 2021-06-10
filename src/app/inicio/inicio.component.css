@@ -15,13 +15,26 @@ body {
     margin-right: 150px;
 }
 
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: #ffcc01; /*replace with your color*/
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: #134d8d;  /*replace with your color*/
+}
+
 .navbar {
     display: block !important;
     background-color: #134d8d;
 }
 
-.title-1 {
+.tituloNav {
     color: white;
+    font-family: 'Roboto';
+}
+
+.botao-limpar {
+    background-color: #ffcc01;
 }
 
 .example-form {
@@ -34,7 +47,7 @@ body {
     width: 100%;
 }
 
-.alinharBtns {
+.alinharBotoes {
     margin-right: 10px;
 }
 
