@@ -1,0 +1,47 @@
+body {
+    background-color: #f9faffad;
+}
+
+button {
+    font-weight: bolder;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: #ffcc01; /*replace with your color*/
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: #134d8d;  /*replace with your color*/
+}
+
+.alinhar-card {
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.botao-limpar {
+    background-color: #ffcc01;
+}
+  
+.example-full-width {
+    width: 100%;
+}
+
+.alinhar-botoes {
+    margin-right: 10px;
+}
+.set-cor-pesquisa {
+    background-color: white;
+}
+
+.icon-aprovado {
+    color: #28a745;
+}
+
+.icon-reprovado {
+    color: red;
+}
+
+.footer {
+    height: 30px;
+}

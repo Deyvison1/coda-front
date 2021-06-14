@@ -1,0 +1,15 @@
+.navbar {
+  display: block !important;
+  background-color: #134d8d;
+  border-bottom: 5px solid #ffcc01;
+}
+
+.titulo-nav {
+  color: white;
+  font-family: "Roboto";
+  font-size: 40px;
+}
+
+.alinhar-titulo {
+  margin-left: 200px;
+}

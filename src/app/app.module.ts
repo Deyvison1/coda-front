@@ -3,26 +3,25 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {MatCardModule} from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InicioComponent } from './inicio/inicio.component';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import { HttpClientModule } from '@angular/common/http';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { CurrencyMaskModule } from "ng2-currency-mask";
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
 
+import { HeaderComponent } from './header/header.component';
+import { LogoComponent } from './logo/logo.component';
+import { PedidoComponent } from './inicio/pedido.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    InicioComponent
-  ],
+  declarations: [AppComponent, PedidoComponent, HeaderComponent, LogoComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -38,9 +37,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSlideToggleModule,
     CurrencyMaskModule,
     MatPaginatorModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
