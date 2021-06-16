@@ -1,0 +1,9 @@
+<div>
+  <div>
+    <app-pesquisa-pedido [paginacao]="listagemPedido.paginacao" #pesquisaPedidos></app-pesquisa-pedido>
+    <app-listagem-pedido #listagemPedido [beneficiario]="pesquisaPedidos.beneficiario"
+      [pedidos]="pesquisaPedidos.pedidos"
+      [totalItens]="pesquisaPedidos.totalItens"
+    ></app-listagem-pedido>
+  </div>
+</div>

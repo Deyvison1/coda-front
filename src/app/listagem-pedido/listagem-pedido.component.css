@@ -1,0 +1,20 @@
+button {
+    font-weight: bolder;
+}
+
+.alinhar-card {
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.icon-aprovado {
+    color: #28a745;
+}
+
+.icon-reprovado {
+    color: red;
+}
+
+.mat-snack-bar-container.success {
+    background: #1DE9B6 !important;
+}

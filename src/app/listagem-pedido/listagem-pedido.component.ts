@@ -1,72 +1,57 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 import { Pedido } from '../models/pedido.model';
 import { PedidoModelService } from '../services/pedido-model.service';
 
 @Component({
-  selector: 'app-pedido',
-  templateUrl: './pedido.component.html',
-  styleUrls: ['./pedido.component.css'],
+  selector: 'app-listagem-pedido',
+  templateUrl: './listagem-pedido.component.html',
+  styleUrls: ['./listagem-pedido.component.css']
 })
-export class PedidoComponent implements OnInit {
+export class ListagemPedidoComponent implements OnInit {
+
   @ViewChild(MatPaginator, { static: true }) paginacao: MatPaginator;
 
   // TIPO PRIMITIVO
-  beneficiario: string = '';
+  @Input() beneficiario: string;
   valorPedido: string = '';
   aprovado = false;
+  teste: number;
   eleicao = false;
-  totalItens: number;
+  @Input() totalItens: number;
 
   // REFERENCIA
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
-  pageEvent: PageEvent = new PageEvent();
 
   // LISTAS
-  pedidos: Pedido[] = [];
+  @Input() pedidos: Pedido[] = [];
   pedidosAprovacao: Pedido[] = [];
 
   constructor(
     private service: PedidoModelService,
-    private _snackBar: MatSnackBar
+    private toastr: ToastrService
   ) {
-    this.pageEvent.pageIndex = 0;
-    this.pageEvent.pageSize = 5;
-    this.listarTodosComOuSemFiltro();
   }
 
   ngOnInit(): void {
     this.paginacao._intl.itemsPerPageLabel = 'Itens por página';
   }
 
-  aprova() {
+  aprovaPedidos() {
     this.service.aprova(this.pedidosAprovacao).subscribe((resp) => {
-      this._snackBar.open('Aprovado com sucesso!', 'OK', {
-        horizontalPosition: this.horizontalPosition,
-        verticalPosition: this.verticalPosition,
-      });
       this.listarTodosComOuSemFiltro();
       this.pedidosAprovacao = [];
+      this.toastr.success('Aprovado com sucesso');
+    }, err => {
+      this.toastr.error('Error');
     });
   }
 
-  aoTrocarPagina(event) {
-    this.pageEvent = event;
+  trocarPagina() {
     this.listarTodosComOuSemFiltro();
-  }
-
-  limpar() {
-    this.beneficiario = '';
-    this.valorPedido = '';
-    this.aprovado = false;
-    this.eleicao = false;
   }
 
   listarTodosComOuSemFiltro() {
@@ -74,8 +59,8 @@ export class PedidoComponent implements OnInit {
       .listarTodosComOuSemFiltro(
         this.beneficiario,
         this.valorPedido,
-        this.pageEvent.pageIndex,
-        this.pageEvent.pageSize
+        this.paginacao.pageIndex,
+        this.paginacao.pageSize
       )
       .subscribe((resp) => {
         this.pedidos = resp.body;
@@ -105,4 +90,5 @@ export class PedidoComponent implements OnInit {
       }
     }
   }
+
 }

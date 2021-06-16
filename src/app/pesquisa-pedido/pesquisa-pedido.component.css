@@ -1,7 +1,3 @@
-body {
-    background-color: #f9faffad;
-}
-
 button {
     font-weight: bolder;
 }
@@ -30,18 +26,7 @@ button {
 .alinhar-botoes {
     margin-right: 10px;
 }
+
 .set-cor-pesquisa {
     background-color: white;
-}
-
-.icon-aprovado {
-    color: #28a745;
-}
-
-.icon-reprovado {
-    color: red;
-}
-
-.footer {
-    height: 30px;
 }

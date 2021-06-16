@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PedidoComponent } from './inicio/pedido.component';
+import { PedidoComponent } from './pedido/pedido.component';
 
 const routes: Routes = [
   {

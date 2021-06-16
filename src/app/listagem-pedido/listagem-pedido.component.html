@@ -1,0 +1,63 @@
+<mat-card
+          class="border alinhar-card mt-4 shadow p-3 mb-5 bg-white rounded"
+        >
+          <div class="row">
+            <div class="col-6">
+              <button
+                class="mt-3 btn btn-success"
+                (click)="aprovaPedidos()"
+                [disabled]="!pedidosAprovacao.length"
+              >
+                <i class="far fa-check-circle"></i>
+                Aprovar Selecionados
+              </button>
+            </div>
+            <div class="col-6"></div>
+          </div>
+
+          <mat-card
+            class="mt-3 border"
+            *ngFor="let item of pedidos"
+            (click)="adicionarNaLista(item)"
+            [class.bg-warning]="temNaLista(item)"
+          >
+            <div class="row">
+              <div class="col-5">
+                <p><strong>Nome Fantasia:</strong> {{ item.nomeFantasia }}</p>
+                <p ><strong>Total:</strong> {{ item.total | currency:'BRL' }}</p>
+                <p>
+                  <strong>Aprovação:</strong>
+                  <span *ngIf="item.aprovacao">
+                    APROVADO
+                    <mat-icon class="icon-aprovado" *ngIf="item.aprovacao"
+                      >check_circle</mat-icon
+                    >
+                  </span>
+                  <span *ngIf="!item.aprovacao && item.aprovacao != null">
+                    REPROVADO
+                    <mat-icon
+                      class="icon-reprovado"
+                      *ngIf="!item.aprovacao && item.aprovacao != null"
+                    >
+                      cancel
+                    </mat-icon>
+                  </span>
+                </p>
+              </div>
+              <div class="col-6">
+                <p><strong>Razão Social:</strong> {{ item.razaoSocial }}</p>
+                <p><strong>Qnt. de parcelas:</strong> {{ item.qtdParcelas }}</p>
+              </div>
+            </div>
+            <button class="mt-2 btn btn-primary">Visualizar</button>
+          </mat-card>
+          <div>
+            <mat-paginator
+              #paginacao
+              [length]="totalItens"
+              [pageSizeOptions]="[5, 10, 20, 50]"
+              (page)="trocarPagina()"
+              >
+            </mat-paginator>
+          </div>
+        </mat-card>

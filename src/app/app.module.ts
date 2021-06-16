@@ -13,15 +13,23 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
+import { ToastrModule } from 'ngx-toastr';
 
 import { HeaderComponent } from './header/header.component';
 import { LogoComponent } from './logo/logo.component';
-import { PedidoComponent } from './inicio/pedido.component';
+import { PedidoComponent } from './pedido/pedido.component';
+import { ListagemPedidoComponent } from './listagem-pedido/listagem-pedido.component';
+import { PesquisaPedidoComponent } from './pesquisa-pedido/pesquisa-pedido.component';
+import { FooterComponent } from './footer/footer.component';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
+
 
 @NgModule({
-  declarations: [AppComponent, PedidoComponent, HeaderComponent, LogoComponent],
+  declarations: [AppComponent, PedidoComponent, HeaderComponent, LogoComponent, ListagemPedidoComponent, PesquisaPedidoComponent, FooterComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -37,9 +45,15 @@ import { PedidoComponent } from './inicio/pedido.component';
     MatSlideToggleModule,
     CurrencyMaskModule,
     MatPaginatorModule,
-    MatSnackBarModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    })
   ],
-  providers: [],
+  providers: [
+    {provide: LOCALE_ID, useValue: "pt-BR" }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
