@@ -4,12 +4,12 @@
           <div class="row">
             <div class="col-6">
               <button
-                class="mt-3 btn btn-success"
+                class="mt-3 btn-aprovar-pedidos btn"
                 (click)="aprovaPedidos()"
                 [disabled]="!pedidosAprovacao.length"
               >
                 <i class="far fa-check-circle"></i>
-                Aprovar Selecionados
+                Aprovar Selecionados *
               </button>
             </div>
             <div class="col-6"></div>
@@ -28,19 +28,16 @@
                 <p>
                   <strong>Aprovação:</strong>
                   <span *ngIf="pedido.aprovacao">
-                    APROVADO
-                    <mat-icon class="icon-aprovado" *ngIf="pedido.aprovacao"
-                      >check_circle</mat-icon
-                    >
+                    Aprovado
+                    <i class="fas fa-check-circle icon-aprovado"></i>
                   </span>
                   <span *ngIf="!pedido.aprovacao && pedido.aprovacao != null">
-                    REPROVADO
-                    <mat-icon
-                      class="icon-reprovado"
-                      *ngIf="!pedido.aprovacao && pedido.aprovacao != null"
-                    >
-                      cancel
-                    </mat-icon>
+                    Reprovado
+                    <i class="fas fa-times-circle icon-reprovado"></i>
+                  </span>
+                  <span *ngIf="pedido.aprovacao == null">
+                    Aguardando
+                    <i class="fas fa-clock icon-aguardando"></i>
                   </span>
                 </p>
               </div>
@@ -49,7 +46,16 @@
                 <p><strong>Qnt. de parcelas:</strong> {{ pedido.qtdParcelas }}</p>
               </div>
             </div>
-            <button class="mt-2 btn btn-primary" (click)="detalhes(pedido.id)">Visualizar</button>
+           <div class="">
+            <button class=" mt-2 btn btn-primary" (click)="detalhes(pedido.id)">
+              <i class="fas fa-info-circle"></i>
+              Visualizar
+            </button>
+            <button *ngIf="pedido.aprovacao == null" class="ajusta-posicao-botao-aprovar mt-2 btn btn-success" (click)="aprovaPedido(pedido)">
+              <i class="far fa-check-circle"></i>
+              Aprovar
+            </button>
+           </div>
           </mat-card>
           <div>
             <mat-paginator

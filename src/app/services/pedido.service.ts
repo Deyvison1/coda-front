@@ -27,7 +27,7 @@ export class PedidoService {
     return this.http.get<Pedido>(`${this.urlPadrao}/listarPeloId/${id}`);
   }
 
-  aprova(pedidos: Pedido[]) {
+  aprovaPedidos(pedidos: Pedido[]) {
     return this.http.post(`${this.urlPadrao}/aprova`, pedidos);
   }
 }

@@ -15,6 +15,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { ToastrModule } from 'ngx-toastr';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { HeaderComponent } from './header/header.component';
 import { LogoComponent } from './logo/logo.component';
@@ -49,7 +50,8 @@ registerLocaleData(localePt);
       timeOut: 10000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
-    })
+    }),
+    MatExpansionModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: "pt-BR" }

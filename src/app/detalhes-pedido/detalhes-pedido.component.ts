@@ -11,6 +11,7 @@ import { PedidoService } from '../services/pedido.service';
 export class DetalhesPedidoComponent implements OnInit {
 
   pedido: Pedido = new Pedido();
+  panelOpenState = true;
 
   constructor(
     private adtivatedRoute: ActivatedRoute,

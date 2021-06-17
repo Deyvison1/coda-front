@@ -1,13 +1,32 @@
 .alinhar-cards {
-    margin-left: 150px;
-    background-color: #f9faffad;
-    margin-right: 150px;
+  margin-left: 150px;
+  background-color: #f9faffad;
+  margin-right: 150px;
 }
 
 .example-full-width {
-    width: 100%;
+  width: 100%;
 }
 
-.btn-listar-todos {
-    margin-left: 150px;
+.btn-voltar {
+  background-color: #134d8d;
+  margin-left: 150px;
+  color: white;
+}
+
+p {
+  font-size: 18px;
+  font-family: "Roboto";
+}
+
+.icon-aprovado {
+  color: #28a745;
+}
+
+.icon-reprovado {
+  color: red;
+}
+
+.icon-aguardando {
+  color: black;
 }
