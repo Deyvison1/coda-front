@@ -6,7 +6,7 @@ import { Pedido } from '../models/pedido.model';
 @Injectable({
   providedIn: 'root',
 })
-export class PedidoModelService {
+export class PedidoService {
   urlPadrao = 'http://localhost:8080/pedido';
 
   constructor(private http: HttpClient) {}
@@ -21,6 +21,10 @@ export class PedidoModelService {
       `${this.urlPadrao}/listarTodosComOuSemFiltro?beneficiario=${beneficiario}&valorItem=${valorItem}&page=${paginaAtual}&size=${limitePagina}`,
       { observe: 'response' }
     );
+  }
+
+  listarPeloId(id): Observable<Pedido> {
+    return this.http.get<Pedido>(`${this.urlPadrao}/listarPeloId/${id}`);
   }
 
   aprova(pedidos: Pedido[]) {

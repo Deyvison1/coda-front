@@ -9,5 +9,13 @@ export class Pedido {
   qtdParcelas: number;
   total: number;
   aprovacao: string;
+  numeroPedido: number;
+  dataSolicitacao: Date;
+  dataAprovacao: Date;
+  numeroDespesas: number;
+  departamento: string;
+  projeto: string;
+  tituloDespesas: string;
+  descricaoDespesas: string;
   marcado: false;
 }

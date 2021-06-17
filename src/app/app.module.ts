@@ -19,17 +19,17 @@ import { ToastrModule } from 'ngx-toastr';
 import { HeaderComponent } from './header/header.component';
 import { LogoComponent } from './logo/logo.component';
 import { PedidoComponent } from './pedido/pedido.component';
-import { ListagemPedidoComponent } from './listagem-pedido/listagem-pedido.component';
+import { ListagemPedidosComponent } from './listagem-pedido/listagem-pedidos.component';
 import { PesquisaPedidoComponent } from './pesquisa-pedido/pesquisa-pedido.component';
-import { FooterComponent } from './footer/footer.component';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { DetalhesPedidoComponent } from './detalhes-pedido/detalhes-pedido.component';
 registerLocaleData(localePt);
 
 
 @NgModule({
-  declarations: [AppComponent, PedidoComponent, HeaderComponent, LogoComponent, ListagemPedidoComponent, PesquisaPedidoComponent, FooterComponent],
+  declarations: [AppComponent, PedidoComponent, HeaderComponent, LogoComponent, ListagemPedidosComponent, PesquisaPedidoComponent, DetalhesPedidoComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

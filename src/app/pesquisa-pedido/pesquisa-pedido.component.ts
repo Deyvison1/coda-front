@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Pedido } from '../models/pedido.model';
-import { PedidoModelService } from '../services/pedido-model.service';
+import { PedidoService } from '../services/pedido.service';
 
 @Component({
   selector: 'app-pesquisa-pedido',
@@ -25,7 +25,7 @@ export class PesquisaPedidoComponent implements OnInit {
   pedidos: Pedido[] = [];
 
   constructor(
-    private service: PedidoModelService
+    private service: PedidoService
   ) {
   }
 

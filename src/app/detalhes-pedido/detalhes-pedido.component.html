@@ -1,0 +1,75 @@
+<div class="btn-listar-todos mt-2">
+  <button
+    class="mb-2 btn btn-primary"
+    (click)="router.navigateByUrl('/pedidos')"
+  >
+    Listar Todos
+  </button>
+</div>
+<mat-card class="mt-1 alinhar-cards border shadow p-3 mb-5 bg-white rounded">
+  <mat-card-title>Detalhes pedido</mat-card-title>
+  <div class="row mt-1">
+    <div class="col-4">
+      <mat-label>Nº do pedido</mat-label>
+      <strong>
+        <p class="mt-2 h5">{{ pedido.numeroPedido }}</p>
+      </strong>
+    </div>
+    <div class="col-4">
+      <mat-label>Data de solicitação</mat-label>
+      <strong>
+        <p class="mt-2 h5">
+          {{ pedido.dataSolicitacao | date: "dd/MM/yyyy hh:mm" }}
+        </p>
+      </strong>
+    </div>
+    <div class="col-4">
+      <mat-label>Data de aprovação</mat-label>
+      <strong>
+        <p class="mt-2 h5">
+          {{ pedido.dataAprovacao | date: "dd/MM/yyyy hh:mm" }}
+        </p>
+      </strong>
+    </div>
+  </div>
+</mat-card>
+
+<mat-card class="alinhar-cards border shadow p-3 mb-5 bg-white rounded">
+  <mat-card-title>Detalhes despesas</mat-card-title>
+  <div class="row mt-1">
+    <div class="col-4">
+      <mat-label>Nº do despesas</mat-label>
+      <strong>
+        <p class="mt-2 h5">{{ pedido.numeroDespesas }}</p>
+      </strong>
+    </div>
+    <div class="col-4">
+      <mat-label>Departamento</mat-label>
+      <strong>
+        <p class="mt-2 h5">{{ pedido.departamento }}</p>
+      </strong>
+    </div>
+    <div class="col-4">
+      <mat-label>Projeto</mat-label>
+      <strong>
+        <p class="mt-2 h5">{{ pedido.projeto }}</p>
+      </strong>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-9">
+      <mat-label>Título despesas</mat-label>
+      <strong>
+        <p class="mt-2 h5">{{ pedido.tituloDespesas }}</p>
+      </strong>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-12">
+      <mat-label>Descrição de despesas</mat-label>
+      <strong>
+        <p class="mt-2 h5">{{ pedido.descricaoDespesas }}</p>
+      </strong>
+    </div>
+  </div>
+</mat-card>

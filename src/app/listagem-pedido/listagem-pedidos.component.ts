@@ -1,16 +1,17 @@
 import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Pedido } from '../models/pedido.model';
-import { PedidoModelService } from '../services/pedido-model.service';
+import { PedidoService } from '../services/pedido.service';
 
 @Component({
-  selector: 'app-listagem-pedido',
-  templateUrl: './listagem-pedido.component.html',
-  styleUrls: ['./listagem-pedido.component.css']
+  selector: 'app-listagem-pedidos',
+  templateUrl: './listagem-pedidos.component.html',
+  styleUrls: ['./listagem-pedidos.component.css']
 })
-export class ListagemPedidoComponent implements OnInit {
+export class ListagemPedidosComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginacao: MatPaginator;
 
@@ -31,8 +32,9 @@ export class ListagemPedidoComponent implements OnInit {
   pedidosAprovacao: Pedido[] = [];
 
   constructor(
-    private service: PedidoModelService,
-    private toastr: ToastrService
+    private service: PedidoService,
+    private toastr: ToastrService,
+    private router: Router
   ) {
   }
 
@@ -48,6 +50,10 @@ export class ListagemPedidoComponent implements OnInit {
     }, err => {
       this.toastr.error('Error');
     });
+  }
+
+  detalhes(pedidoId: number) {
+    this.router.navigateByUrl(`/pedidos/detalhes/${pedidoId}`);
   }
 
   trocarPagina() {

@@ -17,27 +17,27 @@
 
           <mat-card
             class="mt-3 border"
-            *ngFor="let item of pedidos"
-            (click)="adicionarNaLista(item)"
-            [class.bg-warning]="temNaLista(item)"
+            *ngFor="let pedido of pedidos"
+            (click)="adicionarNaLista(pedido)"
+            [class.bg-warning]="temNaLista(pedido)"
           >
             <div class="row">
               <div class="col-5">
-                <p><strong>Nome Fantasia:</strong> {{ item.nomeFantasia }}</p>
-                <p ><strong>Total:</strong> {{ item.total | currency:'BRL' }}</p>
+                <p><strong>Nome Fantasia:</strong> {{ pedido.nomeFantasia }}</p>
+                <p ><strong>Total:</strong> {{ pedido.total | currency:'BRL' }}</p>
                 <p>
                   <strong>Aprovação:</strong>
-                  <span *ngIf="item.aprovacao">
+                  <span *ngIf="pedido.aprovacao">
                     APROVADO
-                    <mat-icon class="icon-aprovado" *ngIf="item.aprovacao"
+                    <mat-icon class="icon-aprovado" *ngIf="pedido.aprovacao"
                       >check_circle</mat-icon
                     >
                   </span>
-                  <span *ngIf="!item.aprovacao && item.aprovacao != null">
+                  <span *ngIf="!pedido.aprovacao && pedido.aprovacao != null">
                     REPROVADO
                     <mat-icon
                       class="icon-reprovado"
-                      *ngIf="!item.aprovacao && item.aprovacao != null"
+                      *ngIf="!pedido.aprovacao && pedido.aprovacao != null"
                     >
                       cancel
                     </mat-icon>
@@ -45,11 +45,11 @@
                 </p>
               </div>
               <div class="col-6">
-                <p><strong>Razão Social:</strong> {{ item.razaoSocial }}</p>
-                <p><strong>Qnt. de parcelas:</strong> {{ item.qtdParcelas }}</p>
+                <p><strong>Razão Social:</strong> {{ pedido.razaoSocial }}</p>
+                <p><strong>Qnt. de parcelas:</strong> {{ pedido.qtdParcelas }}</p>
               </div>
             </div>
-            <button class="mt-2 btn btn-primary">Visualizar</button>
+            <button class="mt-2 btn btn-primary" (click)="detalhes(pedido.id)">Visualizar</button>
           </mat-card>
           <div>
             <mat-paginator
