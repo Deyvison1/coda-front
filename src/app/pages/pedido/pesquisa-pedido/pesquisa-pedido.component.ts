@@ -1,33 +1,29 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { Pedido } from '../models/pedido.model';
-import { PedidoService } from '../services/pedido.service';
+import { Pedido } from '../../../models/pedido.model';
+import { PedidoService } from '../../../services/pedido.service';
 
 @Component({
   selector: 'app-pesquisa-pedido',
   templateUrl: './pesquisa-pedido.component.html',
-  styleUrls: ['./pesquisa-pedido.component.css']
+  styleUrls: ['./pesquisa-pedido.component.css'],
 })
 export class PesquisaPedidoComponent implements OnInit {
   @Input() paginacao: MatPaginator;
-
 
   // TIPO PRIMITIVO
   beneficiario: string = '';
   valorPedido: string = '';
   aprovado = false;
   eleicao = false;
-  
+
   @Input() pageEvent: PageEvent = new PageEvent();
   totalItens: number;
 
   // LISTAS
   pedidos: Pedido[] = [];
 
-  constructor(
-    private service: PedidoService
-  ) {
-  }
+  constructor(private service: PedidoService) {}
 
   ngOnInit(): void {
     this.listarTodosComOuSemFiltro();
@@ -46,7 +42,7 @@ export class PesquisaPedidoComponent implements OnInit {
         this.beneficiario,
         this.valorPedido,
         this.paginacao.pageIndex,
-        (this.paginacao.pageSize == undefined)? 5 : this.paginacao.pageSize
+        this.paginacao.pageSize == undefined ? 5 : this.paginacao.pageSize
       )
       .subscribe((resp) => {
         this.paginacao.firstPage();
@@ -54,6 +50,4 @@ export class PesquisaPedidoComponent implements OnInit {
         this.totalItens = +resp.headers.get('X_TOTAL_COUNT');
       });
   }
-
-
 }

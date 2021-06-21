@@ -11,9 +11,11 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { KeycloakService } from 'keycloak-angular';
 import { ToastrService } from 'ngx-toastr';
-import { Pedido } from '../models/pedido.model';
-import { PedidoService } from '../services/pedido.service';
+import { RolesEnum } from 'src/app/models/enums/roles.enum';
+import { Pedido } from '../../../models/pedido.model';
+import { PedidoService } from '../../../services/pedido.service';
 
 @Component({
   selector: 'app-listagem-pedidos',
@@ -29,6 +31,7 @@ export class ListagemPedidosComponent implements OnInit {
   aprovado = false;
   teste: number;
   eleicao = false;
+  temAcaoAprovarPedido: boolean = false;
   @Input() totalItens: number;
 
   // REFERENCIA
@@ -42,11 +45,15 @@ export class ListagemPedidosComponent implements OnInit {
   constructor(
     private service: PedidoService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private keycloakService: KeycloakService
   ) {}
 
   ngOnInit(): void {
     this.paginacao._intl.itemsPerPageLabel = 'Itens por página';
+    this.temAcaoAprovarPedido = this.keycloakService.isUserInRole(
+      RolesEnum.APROVADOR_NACIONAL_ADMINISTRADOR
+    );
   }
 
   aprovaPedidos() {

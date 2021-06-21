@@ -14,9 +14,8 @@
   color: white;
 }
 
-p {
-  font-size: 18px;
-  font-family: "Roboto";
+.btn-aprovar {
+  color: white;
 }
 
 .icon-aprovado {
@@ -29,4 +28,13 @@ p {
 
 .icon-aguardando {
   color: black;
+}
+
+p {
+  font-size: 18px;
+  font-family: "Roboto";
+}
+
+button {
+  font-weight: bolder;
 }

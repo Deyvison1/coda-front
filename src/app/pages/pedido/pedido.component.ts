@@ -6,8 +6,8 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { Pedido } from '../models/pedido.model';
-import { PedidoService } from '../services/pedido.service';
+import { Pedido } from '../../models/pedido.model';
+import { PedidoService } from '../../services/pedido.service';
 
 @Component({
   selector: 'app-pedido',
