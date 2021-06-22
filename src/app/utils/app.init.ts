@@ -13,7 +13,6 @@ export function initializeKeycloak(
       initOptions: {
         checkLoginIframe: true,
         checkLoginIframeInterval: 25
-      },
-      loadUserProfileAtStartUp: true
+      }
     });
 }
